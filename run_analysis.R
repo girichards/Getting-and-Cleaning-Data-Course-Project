@@ -75,6 +75,6 @@ run_analysis <- function() {
     write.table(tidyAverages, file=tidyAveragesFileName, row.names=FALSE)
 
     ## write columns names into file for the codebook
-    write(colnames(tidyData), file="columns.txt")
+    #write(colnames(tidyData), file="columns.txt")
 
 }
