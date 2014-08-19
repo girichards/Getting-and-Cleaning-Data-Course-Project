@@ -10,8 +10,8 @@ run_analysis <- function() {
     # Appropriately labels the data set with descriptive variable names.
     # Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-    tidyFileName <- "tidy.txt"
-    tidyAveragesFileName <- "tidy_averages.txt"
+    tidyFileName <- "tidy_sensor_data.txt"
+    tidyAveragesFileName <- "average_sensor_values_for_subject_and_activity.txt"
 
     basePath <- "UCI HAR Dataset"
     features <- read.table( paste(basePath, "features.txt", sep="/")  )[, 2]
@@ -62,13 +62,22 @@ run_analysis <- function() {
     ## sort by subject
     tidyData <- tidyData[ order(tidyData[, "subject"], tidyData[, "activity"]),  ]
 
-    print(paste("Writing ", tidyFileName))
-    write.table(tidyData, file=tidyFileName, row.names=FALSE)
 
+    ## Write a copy of the cleaned data before reshaping takes place
+    #print(paste("Writing ", tidyFileName))
+    #write.table(tidyData, file=tidyFileName, row.names=FALSE)
 
+    ##
+    ## Reshape the data to produce an smaller dataset the produces the average of each measure, per subject and activity
+    ##
+
+    ## deduce the variable names
     measures <- colnames(tidyData)[3:ncol(tidyData)]
+
+    ## melt the data to produce a tall and narrow dataset with the columns: subject, activity, variable, value
     melted <- melt(tidyData, id=c("subject", "activity"), measure.vars=measures)
 
+    ## rebuild the wide data from the melt, applying the average function to each subject and activity
     tidyAverages <- dcast(melted, subject + activity ~ variable, mean)
 
     print(paste("Writing ", tidyAveragesFileName))
