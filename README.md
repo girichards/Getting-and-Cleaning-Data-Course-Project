@@ -18,7 +18,7 @@ This script reads and combines the following files to create a tidy dataset.
 - 'test/X_test.txt': Test set.
 - 'test/y_test.txt': Test labels. The corresponding "activityId" of the X_train set
 
-The script produces a space separated file called "average_sensor_values_for_subject_and_activity.txt", which represents the average of each mean and std measurement for each subject and activity.
+The script produces a space separated file called "*average_sensor_values_for_subject_and_activity.txt*", which represents the average of each mean and std measurement for each subject and activity.
 
 The process
 -----------

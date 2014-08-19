@@ -4,7 +4,7 @@ Code Book
 average_sensor_values_for_subject_and_activity.txt
 -----------------
 
-The content of tidy.txt is as follows.
+The content of average_sensor_values_for_subject_and_activity.txt is as follows.
 
 There is one row per subject and activity. The variable, columns 3 to 68, are averages of the variables per subject and activity.
 
